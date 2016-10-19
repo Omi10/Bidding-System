@@ -26,11 +26,12 @@ public class UserDaoImp {
 		getSession().save(user);
 	}
 	
-	
 	public void delete(User user) {
 		getSession().delete(user);
 	}
-
+	
+	
+	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
 		return getSession().createQuery("from User").list();

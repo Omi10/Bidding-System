@@ -24,15 +24,23 @@ public class UserController {
 	@RequestMapping(value="/test", method = RequestMethod.GET)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.CREATED)
-	public String create(String name, String email, String contact) {
+	public String testpoint(String name, String email, String contact) {
 		return "rahul";
 	}
 	
 	@RequestMapping(value="/all",method = RequestMethod.GET)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
-	public List<User> getAll() {
+	public List<User> getAll()   {
 		return userService.getAllUsers();
+	}
+	
+	
+	@RequestMapping(value="/new", method = RequestMethod.POST)
+	@ResponseBody
+	@ResponseStatus(HttpStatus.CREATED)
+	public User create(String name, String email, String contact) {
+		return userService.addUser(name, email, contact);
 	}
 	
 }

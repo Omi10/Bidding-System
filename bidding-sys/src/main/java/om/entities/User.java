@@ -35,9 +35,10 @@ public class User  implements java.io.Serializable {
     }
 
 	
-    public User(String name, String email) {
+    public User(String name, String email,String contactNo) {
         this.name = name;
         this.email = email;
+        this.contactNo= contactNo;
     }
     
     public User(String name, String email, String contactNo, String address, Set<Bid> bids, Set<Item> items, Set<Wallet> wallets) {
@@ -49,9 +50,8 @@ public class User  implements java.io.Serializable {
        this.wallets = wallets;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
+    @Id
+    @GeneratedValue(strategy=IDENTITY)
     @Column(name="id", unique=true, nullable=false)
     public Integer getId() {
         return this.id;
@@ -93,7 +93,7 @@ public class User  implements java.io.Serializable {
 
     
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+/*@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
     public Set<Bid> getBids() {
         return this.bids;
     }
@@ -118,10 +118,7 @@ public class User  implements java.io.Serializable {
     
     public void setWallets(Set<Wallet> wallets) {
         this.wallets = wallets;
-    }
-
-
-
+    }*/
 
 }
 

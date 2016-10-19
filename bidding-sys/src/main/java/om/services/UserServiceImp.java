@@ -19,6 +19,13 @@ public class UserServiceImp {
 		List<User> users = userDaoImp.getAll();
 		return users;
 	}
+	
+	public User addUser(String name, String email, String contact) {
+		User user = new User(name, email, contact);
+		userDaoImp.save(user);
+		return user;
+	}
+	
 		
 }
 
