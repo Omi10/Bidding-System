@@ -27,7 +27,6 @@ public class User  implements java.io.Serializable {
      private String name;
      private String email;
      private String contactNo;
-     private String address;
      private Set<Bid> bids = new HashSet<Bid>(0);
      private Set<Item> items = new HashSet<Item>(0);
      private Set<Wallet> wallets = new HashSet<Wallet>(0);
@@ -45,7 +44,6 @@ public class User  implements java.io.Serializable {
        this.name = name;
        this.email = email;
        this.contactNo = contactNo;
-       this.address = address;
        this.bids = bids;
        this.items = items;
        this.wallets = wallets;
@@ -94,14 +92,6 @@ public class User  implements java.io.Serializable {
     }
 
     
-    @Column(name="address", length=65535)
-    public String getAddress() {
-        return this.address;
-    }
-    
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="user")
     public Set<Bid> getBids() {

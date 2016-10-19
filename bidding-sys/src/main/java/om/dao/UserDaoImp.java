@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import om.entities.User;
 
 @Repository
-//@Transactional
+@Transactional
 public class UserDaoImp {
 
 	@Autowired

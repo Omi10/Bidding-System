@@ -14,16 +14,11 @@ public class UserServiceImp {
 	@Autowired
 	UserDaoImp userDaoImp;
 	
+	
 	public List<User> getAllUsers() {
 		List<User> users = userDaoImp.getAll();
 		return users;
 	}
-	
-	/*@Override
-	public UserModel updateUser(int userId, User user) {
-		UpdateUserModel user = userUtils.mapUpdateUser(userId, user);
-		return user;
-	}*/
-	
+		
 }
 
