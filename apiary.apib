@@ -1,0 +1,103 @@
+HOST: http://localhost:8080/
+
+# Bidding System API
+
+End points to maintain an Online Bidding System
+
+## Items [/items]
+
+### List All Items [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "items": [
+                    {
+                        "id": 1,
+                        "item": "Samasung J5",
+                        "description" : "Mobile phone purchasede year xyz",
+                        "bid_price" : 2500,
+                        "category" : "Electronics",
+                        "bid_type" : "Closed"
+                    }, 
+                    {
+                        "id": 2,
+                        "item": "Fridge",
+                        "description" : "Godrej year 2010",
+                        "bid_price" : 6000,
+                        "category" : "Electronics",
+                        "bid_type" : "Closed"
+                    }
+                ]
+            }
+        ]
+    
+
+## Items [/items/{itemId}]            
+
+### Update an iem [PATCH]
+
+End point to update an existing item
+
++ Parameters
+    + itemId - id of an item.
+
++ Request (application/json)
+
+        {          
+            "id": 1,
+            "item": "Samasung J5",
+            "description" : "Mobile phone purchasede year xyz",
+            "bid_price" : 2500,
+            "category" : "Electronics",
+            "bid_type" : "Closed"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+    + Body
+    
+       {    
+            "id": 1,
+            "item": "Samasung J5",
+            "description" : "Mobile phone purchasede year xyz",
+            "bid_price" : 3000,
+            "category" : "Electronics",
+            "bid_type" : "Closed"
+       }
+        
+     
+### Deleting an uploaded item [DELETE]
+
+End point to delete an upload item
+
++ Parameters
+    + itemId - id of an upload item
+    
++ Response 200 (application/json)  
+
+
+## Bid for an item [/items/{itemId}/bid]
+
+### New Job application [POST]    
+End point to add a new bid for an item
+
++ Request (application/json)
+
+        {"appliedBy":2}
+
++ Response 201 (application/json)
+
+    + Headers
+
+            
+
+    + Body
+
+            {
+                "responseCode": 102,
+                "message": "Job application added succesfully",
+            }
