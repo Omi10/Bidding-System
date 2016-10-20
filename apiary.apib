@@ -1,44 +1,27 @@
 HOST: http://localhost:8080/
 
-# Bidding System API
+#Bidding System API
 
-End points to maintain an Online Bidding System
+Online Bidding System is an portal where users can bid for avaialable 
+items as well as upload an item for bidding.
 
-## Items [/items]
+
+
+## Items Listing [/items]
 
 ### List All Items [GET]
 
-+ Response 200 (application/json)
+## Upload an item [/item ] 
 
-        [
-            {
-                "items": [
-                    {
-                        "id": 1,
-                        "item": "Samasung J5",
-                        "description" : "Mobile phone purchasede year xyz",
-                        "bid_price" : 2500,
-                        "category" : "Electronics",
-                        "bid_type" : "Closed"
-                    }, 
-                    {
-                        "id": 2,
-                        "item": "Fridge",
-                        "description" : "Godrej year 2010",
-                        "bid_price" : 6000,
-                        "category" : "Electronics",
-                        "bid_type" : "Closed"
-                    }
-                ]
-            }
-        ]
-    
+### Item upload[POST]
 
-## Items [/items/{itemId}]            
 
-### Update an iem [PATCH]
+## Item Manipulation [/item/{itemId}]            
 
-End point to update an existing item
+### Get an Item [GET]
+
+
+### Update an Item [PATCH]
 
 + Parameters
     + itemId - id of an item.
@@ -46,33 +29,19 @@ End point to update an existing item
 + Request (application/json)
 
         {          
-            "id": 1,
-            "item": "Samasung J5",
-            "description" : "Mobile phone purchasede year xyz",
-            "bid_price" : 2500,
-            "category" : "Electronics",
-            "bid_type" : "Closed"
+            "bid_price" : 2500
         }
-
-+ Response 201 (application/json)
-
     + Headers
 
     + Body
     
        {    
-            "id": 1,
-            "item": "Samasung J5",
-            "description" : "Mobile phone purchasede year xyz",
-            "bid_price" : 3000,
-            "category" : "Electronics",
-            "bid_type" : "Closed"
+            "bid_price" : 3000
        }
         
-     
-### Deleting an uploaded item [DELETE]
++ Response 200 (application/json)
 
-End point to delete an upload item
+### Deleting Item [DELETE]
 
 + Parameters
     + itemId - id of an upload item
@@ -80,24 +49,18 @@ End point to delete an upload item
 + Response 200 (application/json)  
 
 
-## Bid for an item [/items/{itemId}/bid]
+## Bid for an item [/bid]
 
-### New Job application [POST]    
-End point to add a new bid for an item
+### Bid for an available item [POST]    
 
-+ Request (application/json)
+## Bid Manipulation [/bid/{bidId}]
 
-        {"appliedBy":2}
+### Get Bid Detials [GET]
 
-+ Response 201 (application/json)
+### Update Bid [PATCH]
 
-    + Headers
+### Delete Bid [DELETE]
 
-            
+## Item Bids [/item/{itemId}/bids]
 
-    + Body
-
-            {
-                "responseCode": 102,
-                "message": "Job application added succesfully",
-            }
+### All Bids for an item [GET]
