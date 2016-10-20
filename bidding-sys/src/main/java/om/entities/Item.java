@@ -27,7 +27,6 @@ import javax.persistence.TemporalType;
 )
 public class Item  implements java.io.Serializable {
 
-
      private Integer id;
      private Category category;
      private User user;
@@ -75,7 +74,7 @@ public class Item  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="category_id")
     public Category getCategory() {
         return this.category;
@@ -85,7 +84,7 @@ public class Item  implements java.io.Serializable {
         this.category = category;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="owner_id")
     public User getUser() {
         return this.user;
@@ -175,7 +174,7 @@ public class Item  implements java.io.Serializable {
         this.minBalance = minBalance;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="item")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="item")
     public Set<Bid> getBids() {
         return this.bids;
     }

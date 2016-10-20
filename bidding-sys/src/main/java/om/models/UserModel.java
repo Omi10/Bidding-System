@@ -51,7 +51,5 @@ public class UserModel {
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
-
-	
 	
 }

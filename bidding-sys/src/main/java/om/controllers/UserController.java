@@ -20,7 +20,6 @@ public class UserController {
 	@Autowired
 	UserServiceImp userService;
 	
-	
 	@RequestMapping(value="/test", method = RequestMethod.GET)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.CREATED)

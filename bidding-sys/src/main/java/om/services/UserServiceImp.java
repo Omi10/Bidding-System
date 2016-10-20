@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import om.dao.UserDaoImp;
 import om.entities.User;
 import om.models.UserModel;
@@ -20,6 +22,7 @@ public class UserServiceImp {
 		return users;
 	}
 	
+	@Transactional
 	public User addUser(String name, String email, String contact) {
 		User user = new User(name, email, contact);
 		userDaoImp.save(user);

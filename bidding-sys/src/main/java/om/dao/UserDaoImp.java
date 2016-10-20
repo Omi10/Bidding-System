@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import om.entities.User;
 
 @Repository
-@Transactional
+@Transactional  
 public class UserDaoImp {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class UserDaoImp {
 	}
 	
 	
-	@Transactional
+	
 	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
 		return getSession().createQuery("from User").list();

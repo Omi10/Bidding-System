@@ -102,7 +102,7 @@ public class User  implements java.io.Serializable {
         this.bids = bids;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="user")
     public Set<Item> getItems() {
         return this.items;
     }
@@ -118,8 +118,8 @@ public class User  implements java.io.Serializable {
     
     public void setWallets(Set<Wallet> wallets) {
         this.wallets = wallets;
-    }*/
-
+    }
+*/
 }
 
 
