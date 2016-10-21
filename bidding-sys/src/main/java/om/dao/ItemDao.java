@@ -6,7 +6,7 @@ import om.entities.Item;
 
 public interface ItemDao {
 
-	public int save(Item item);
+	public void save(Item item);
 
 	public List<Item> getItems();
 

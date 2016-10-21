@@ -8,19 +8,13 @@ import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import om.entities.Item;
-
-
-/**
- * DAO Implementation that performs CRUD operations on Item Entity
- * 
- * @author omprakash
- *
- */
+import om.entities.Bid;
+import om.entities.User;
+import om.entities.Bid;
 
 @Repository
 @Transactional
-public class ItemDaoImp implements ItemDao {
+public class BidDaoImp implements BidDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -30,29 +24,29 @@ public class ItemDaoImp implements ItemDao {
 	}
 
 	@Override
-	public void save(Item Item) {
-		getSession().save(Item);
+	public void save(Bid Bid) {
+		getSession().save(Bid);
 	}
 
 	@Override
-	public Item getItem(int ItemId) {
-		return getSession().get(Item.class, ItemId);
+	public Bid getBid(int bidId) {
+		return getSession().get(Bid.class, bidId);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Item> getItems() throws JDBCConnectionException {
-		return getSession().createQuery("from Item").list();
+	public List<Bid> getBids() throws JDBCConnectionException {
+		return getSession().createQuery("from Bid").list();
 	}
 
 	@Override
-	public void update(Item Item) {
-		getSession().update(Item);
+	public void update(Bid bid) {
+		getSession().update(bid);
 	}
 
 	@Override
-	public void delete(Item Item) {
-		getSession().delete(Item);
+	public void delete(Bid bid) {
+		getSession().delete(bid);
 	}
 
 }

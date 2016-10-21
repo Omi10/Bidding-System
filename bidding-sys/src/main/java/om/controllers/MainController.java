@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String index() {
-    	System.out.println("Hello------");
-        return "Greetings from Spring Boot!";
+        return "Good";
     }
 
 }

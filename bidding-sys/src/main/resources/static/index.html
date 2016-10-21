@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+   $("button").click(function(){
+       $.get("/items", function(data, status){
+       $.each(data, function (i, item) {
+       alert("Data: "+data[i].name+ " \nStatus: " + status);
+   
+});         
+       });
+   });
+});
+</script>
+</head>
+<body>
+Welcome in Bidding Portal
+
+<button>Items available for Bidding</button>
+<table id="location" border='1'>
+   <tr>
+       <th>Item</th>
+        <th>Description</th>
+        <th>Inital Bid Amount</th>
+        <th>Bid End Time</th>
+   </tr>
+</table>
+
+</body>
+</html>

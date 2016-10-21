@@ -12,6 +12,8 @@ import om.models.ItemModel;
 import om.utilities.MappingUtility;
 import om.entities.Item;
 
+import inti.ws.spring.exception.client.BadRequestException;
+
 /**
  * Business logic related to Item
  * @author omprakashnirankari
@@ -39,7 +41,9 @@ public class ItemServiceImp implements ItemService {
 	
 	
 	@Override
-	public ItemModel getItem(int itemId) {
+	public ItemModel getItem(int itemId) throws BadRequestException {
+		if(itemId<0)
+			throw new BadRequestException("Invalid ItemId parameters");
 		Item item=itemDao.getItem(itemId);
 		ItemModel itemModel = mUtility.itemToItemModel(item);
 		return itemModel;
@@ -63,10 +67,10 @@ public class ItemServiceImp implements ItemService {
 	}
 
 	@Override
-	public void deleteItem(int ItemId)
+	public void deleteItem(int itemId)
 	{
 		Item item = new Item();
-		item.setId(ItemId);
+		item.setId(itemId);
 		itemDao.delete(item);
 	}
 	

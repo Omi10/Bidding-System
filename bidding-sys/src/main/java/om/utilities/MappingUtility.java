@@ -4,57 +4,88 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import om.entities.User;
+import om.entities.Bid;
 import om.entities.Item;
+import om.models.BidModel;
 import om.models.ItemModel;
-
+import om.models.MakeBidModel;
 
 @Service
 public class MappingUtility {
-  
-	public ItemModel itemToItemModel (Item item)
-	{
-		ItemModel itemModel=new ItemModel();
+
+	public ItemModel itemToItemModel(Item item) {
+		ItemModel itemModel = new ItemModel();
 		itemModel.setItemId(item.getId());
 		itemModel.setName(item.getItem());
-		
-		if(item.getBidType()!=null && item.getBidType() ==false)
+
+		if (item.getBidType() != null && item.getBidType() == false)
 			itemModel.setBidType("Closed");
-		else if(item.getBidType()!=null && item.getBidType()==true)
+		else if (item.getBidType() != null && item.getBidType() == true)
 			itemModel.setBidType("Open");
-		if(item.getUser()!=null)
-		  itemModel.setOwner(item.getUser().getName());
-		
-	    itemModel.setDescription(item.getDescription());
-	    itemModel.setStartBidAmount(item.getInitialPrice());
-		itemModel.setbidEndTime(item.getEndTime());		
+		if (item.getUser() != null)
+			itemModel.setOwner(item.getUser().getName());
+
+		itemModel.setDescription(item.getDescription());
+		itemModel.setStartBidAmount(item.getInitialPrice());
+		itemModel.setbidEndTime(item.getEndTime());
 		return itemModel;
 	}
-	
-	
-	public List<ItemModel> itemsToItemModels (List<Item> items)
-	{
-		List<ItemModel> itemList=new ArrayList<>();
-		for(Item i :items)
-		  itemList.add(itemToItemModel(i));
+
+	public List<ItemModel> itemsToItemModels(List<Item> items) {
+		List<ItemModel> itemList = new ArrayList<>();
+		for (Item i : items)
+			itemList.add(itemToItemModel(i));
 		return itemList;
 	}
-	
-	public Item itemModelToItem(ItemModel itemModel)
-	{
-		Item item=new Item();
+
+	public Item itemModelToItem(ItemModel itemModel) {
+		Item item = new Item();
 		item.setItem(itemModel.getName());
 		item.setInitialPrice(itemModel.getStartBidAmount());
 		item.setDescription(itemModel.getDescription());
 		item.setEndTime(itemModel.getbidEndTime());
 		return item;
 	}
-	
-	public ItemModel updateItem(Item item,ItemModel itemModel)
-	{
+
+	public ItemModel updateItem(Item item, ItemModel itemModel) {
 		item.setInitialPrice(itemModel.getStartBidAmount());
 		return itemModel;
 	}
+
+	public BidModel bidToBidModel(Bid bid) {
+		BidModel bidModel = new BidModel();
+		bidModel.setBidId(bid.getId());
+		bidModel.setItem(bid.getItem().getItem()); // Get the Item Entity object
+													// then fetch the item name
+													// from that object
+		bidModel.setLatestBid(bid.isIsRecent());
+		bidModel.setWon(bid.isBidWon());
+		bidModel.setMadeBy(bid.getUser().getName());
+		bidModel.setBid_value(bid.getBidAmount());
+		return bidModel;
+	}
+
+	public List<BidModel> bidsToBidModels(List<Bid> bids) {
+		List<BidModel> bidModels = new ArrayList<>();
+		for (Bid bid : bids) {
+			bidModels.add(bidToBidModel(bid));
+		}
+		return bidModels;
+	}
+
+	public Bid makeBidModelToBid(int itemId, MakeBidModel makeBidModel) {
+		Bid bid=new Bid();
+		User user=new User();
+		Item item=new Item();
+		item.setId(itemId);
+		user.setId(makeBidModel.getBidderId());
+		bid.setUser(user);
+		bid.setItem(item);
+		bid.setBidAmount(makeBidModel.getBid_value());	
+		return bid;
 		
+	}
+
 }

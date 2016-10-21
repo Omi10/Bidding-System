@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import om.models.ItemModel;
 import om.services.ItemService;
+import om.utilities.Logger;
 
-
-
+import inti.ws.spring.exception.client.BadRequestException;
+import inti.ws.spring.exception.client.NotFoundException;
 
 @Controller
 public class ItemController {
@@ -24,20 +25,22 @@ public class ItemController {
    @Autowired
    ItemService itemService;
    
+   private static final Logger LOG = Logger.getInstance(ItemController.class);
    
    @RequestMapping(value = "/items", method = RequestMethod.GET)
    @ResponseBody
    @ResponseStatus(HttpStatus.OK)
     public List<ItemModel> getAllItems() {
+	  LOG.info("Get all Item requests");
 	  List<ItemModel> itemModels = null;
 	  itemModels = itemService.getItems();
       return itemModels;
 	}
    
-   @RequestMapping(value = "/item", method = RequestMethod.POST)
+   @RequestMapping(value = "/item", method = RequestMethod.POST) 
    @ResponseBody
    @ResponseStatus(HttpStatus.CREATED)
-    public ItemModel uploadItem(@RequestBody ItemModel itemModel){
+    public ItemModel uploadItem(@RequestBody ItemModel itemModel)throws BadRequestException{
 	  return itemService.addItem(itemModel);
 	  
    }
@@ -54,7 +57,7 @@ public class ItemController {
    @RequestMapping(value = "/item/{itemId}", method = RequestMethod.PATCH)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
-	public ItemModel updateJob(@PathVariable int itemId, @RequestBody ItemModel itemModel)
+	public ItemModel updateItem(@PathVariable int itemId, @RequestBody ItemModel itemModel)
     {
 		return itemService.updateItem(itemId, itemModel);
 	}
@@ -63,7 +66,7 @@ public class ItemController {
    @RequestMapping(value = "/item/{itemId}", method = RequestMethod.GET)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
-	public ItemModel updateJob(@PathVariable int itemId)
+	public ItemModel getItem(@PathVariable int itemId) throws BadRequestException
    {
 		return itemService.getItem(itemId);
 	}
