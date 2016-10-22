@@ -15,5 +15,7 @@ public interface ItemDao {
 	public void update(Item Item);
 
 	public void delete(Item Item);
+	
+	public List<Item> getItemsByCategory(int categoryId);
 
 }

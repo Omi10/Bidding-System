@@ -4,28 +4,37 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-   $("button").click(function(){
-       $.get("/items", function(data, status){
-       $.each(data, function (i, item) {
-       alert("Data: "+data[i].name+ " \nStatus: " + status);
-   
-});         
-       });
-   });
+ $("button").click(function(){
+     $.get("/items", function(data, status){
+     $.each(data, function (i, item) {
+     tr = $('<tr/>');
+       tr.append("<td>" + data[i].name + "</td>");
+       tr.append("<td>" + data[i].category + "</td>");
+       tr.append("<td>" + data[i].description+ "</td>");
+       tr.append("<td>" + data[i].startBidAmount + "</td>");
+       tr.append("<td>" + data[i].bidEndTime + "</td>");
+       $('#location').append(tr);
+    
+ 
+});      
+     });
+ });
 });
 </script>
 </head>
 <body>
-Welcome in Bidding Portal
+Online Bidding System
 
-<button>Items available for Bidding</button>
+
+<button>Items available </button>
 <table id="location" border='1'>
-   <tr>
-       <th>Item</th>
-        <th>Description</th>
-        <th>Inital Bid Amount</th>
-        <th>Bid End Time</th>
-   </tr>
+ <tr>
+     <th>Name</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Start Bid Amount</th>
+      <th>bidEndTime</th>
+ </tr>
 </table>
 
 </body>

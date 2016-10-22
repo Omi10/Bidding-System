@@ -25,5 +25,6 @@ public class CategoryDaoImp implements CategoryDao {
 	@Override
 	public List<Category> getCategories() {
 		return getSession().createQuery("from Category").list();
-	}
+		//getSession().getNamedQuery("sdkfjsdkj").setParameter("dfdf", 1).setParameter("dfd", 1)	
+		}
 }

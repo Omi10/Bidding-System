@@ -57,7 +57,7 @@ public class Category  implements java.io.Serializable {
         this.category = category;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="category")
+@OneToMany(fetch=FetchType.EAGER, mappedBy="category")
     public Set<Item> getItems() {
         return this.items;
     }
@@ -65,10 +65,6 @@ public class Category  implements java.io.Serializable {
     public void setItems(Set<Item> items) {
         this.items = items;
     }
-
-
-
-
 }
 
 

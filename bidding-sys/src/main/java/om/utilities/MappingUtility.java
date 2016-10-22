@@ -19,6 +19,7 @@ public class MappingUtility {
 		ItemModel itemModel = new ItemModel();
 		itemModel.setItemId(item.getId());
 		itemModel.setName(item.getItem());
+		
 
 		if (item.getBidType() != null && item.getBidType() == false)
 			itemModel.setBidType("Closed");
@@ -29,7 +30,13 @@ public class MappingUtility {
 
 		itemModel.setDescription(item.getDescription());
 		itemModel.setStartBidAmount(item.getInitialPrice());
-		itemModel.setbidEndTime(item.getEndTime());
+		java.util.Date dt = item.getEndTime();
+		System.out.println(dt);
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentTime = sdf.format(dt);
+		System.out.println(currentTime);
+		itemModel.setBidEndTime(currentTime);
+		//itemModel.setbidEndTime(item.getEndTime());
 		return itemModel;
 	}
 
@@ -45,7 +52,7 @@ public class MappingUtility {
 		item.setItem(itemModel.getName());
 		item.setInitialPrice(itemModel.getStartBidAmount());
 		item.setDescription(itemModel.getDescription());
-		item.setEndTime(itemModel.getbidEndTime());
+		//item.setEndTime(itemModel.getbidEndTime());
 		return item;
 	}
 

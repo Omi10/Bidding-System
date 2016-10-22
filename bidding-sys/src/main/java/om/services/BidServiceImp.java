@@ -2,6 +2,10 @@ package om.services;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +53,15 @@ public class BidServiceImp implements BidService {
 		 */
 		return null;
 	}
+	
+	@Override
+	public BidModel getBidResult(int itemId) {	
+		Bid bid =  bidDao.getBidResult(itemId);
+		BidModel bidModel = mUtility.bidToBidModel(bid);
+		return bidModel;	
+	}
+	
+	
 
 	@Override
 	public void deleteBid(int bidId) {

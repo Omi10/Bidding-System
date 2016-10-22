@@ -1,18 +1,17 @@
 package om.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import inti.ws.spring.exception.client.BadRequestException;
 import om.dao.CategoryDao;
 import om.dao.ItemDao;
-import om.entities.Category;
+import om.entities.Item;
 import om.models.ItemModel;
 import om.utilities.MappingUtility;
-import om.entities.Item;
-
-import inti.ws.spring.exception.client.BadRequestException;
 
 /**
  * Business logic related to Item
@@ -33,8 +32,23 @@ public class ItemServiceImp implements ItemService {
 	
 	
 	@Override
-	public List<ItemModel> getItems() {
-		List<Item> items = (List<Item>) itemDao.getItems();
+	public List<ItemModel> getItems(Map<String,String[]> parameters) {
+		
+		List<Item> items=null;
+		if(parameters.size()==0)
+		{
+			items = (List<Item>) itemDao.getItems();
+			
+		}
+		else
+		{
+			//if(parameters.get("categoryId")[0].equals(Integer.toString(1)))
+			//{
+			     int idValue=new Integer(parameters.get("categoryId")[0]);
+			     System.out.println("Idvalue =="+idValue);
+				 items = (List<Item>) itemDao.getItemsByCategory(idValue);
+			//}			
+		}
 		List<ItemModel> itemModels = mUtility.itemsToItemModels(items);
 		return itemModels;
 	}

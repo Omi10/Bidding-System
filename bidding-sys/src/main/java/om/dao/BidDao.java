@@ -2,6 +2,8 @@ package om.dao;
 
 import java.util.List;
 
+import org.hibernate.exception.JDBCConnectionException;
+
 import om.entities.Bid;
 
 public interface BidDao {
@@ -15,5 +17,7 @@ public interface BidDao {
 	public void update (Bid Bid);
 	
 	public void delete (Bid bid);
+	
+	public Bid getBidResult(int itemId) throws JDBCConnectionException;
 	
 }

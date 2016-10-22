@@ -1,4 +1,4 @@
-package om.controllers;
+ package om.controllers;
 
 
 import java.util.List;
@@ -39,6 +39,13 @@ public class BidController {
 	   @ResponseStatus(HttpStatus.CREATED)
 	    public BidModel makeBid(@PathVariable int itemId,@RequestBody MakeBidModel makeBidModel){
 		  return bidService.addBid(itemId,makeBidModel);	  
+	   }
+	   
+	   @RequestMapping(value = "items/{itemId}/bids/result", method = RequestMethod.GET)
+	   @ResponseBody
+	   @ResponseStatus(HttpStatus.CREATED)
+	    public BidModel bidResult(@PathVariable int itemId){
+		  return bidService.getBidResult(itemId);	  
 	   }
 	   
 	   

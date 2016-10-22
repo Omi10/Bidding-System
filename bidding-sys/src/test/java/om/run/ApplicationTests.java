@@ -42,7 +42,6 @@ public class ApplicationTests {
 		itemModelToSave.setDescription("2014 purchased");
 		itemModelToSave.setBidType("Closed");
 		itemModelToSave.setCategory(null);
-		itemModelToSave.setbidEndTime(null);
 		System.out.println("Testing");
 		// Save and Get Test
 		//ItemModel itemModelSaved = itemService.addItem(itemModelToSave);

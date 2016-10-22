@@ -16,7 +16,7 @@ public class ItemModel
 	private String description;
 	private int startBidAmount;
 	private String bidType;
-	private Date bidEndTime;
+	private String bidEndTime;
 	private Integer ItemId;
 	
 	public String getBidType() {
@@ -63,14 +63,12 @@ public class ItemModel
 	public void setStartBidAmount(int startBidAmount) {
 		this.startBidAmount = startBidAmount;
 	}
-	
-	public Date getbidEndTime() {
+	public String getBidEndTime() {
 		return bidEndTime;
 	}
-	public void setbidEndTime(Date bidEndTime) {
+	public void setBidEndTime(String bidEndTime) {
 		this.bidEndTime = bidEndTime;
 	}
 	
-
 }
 

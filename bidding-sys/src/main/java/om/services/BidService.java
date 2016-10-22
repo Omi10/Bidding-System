@@ -16,5 +16,7 @@ public interface BidService {
 	public BidModel updateBid(int bidId, BidModel bid);
 
 	public void deleteBid(int BidId);
+	
+	public BidModel getBidResult(int itemId);
 
 }

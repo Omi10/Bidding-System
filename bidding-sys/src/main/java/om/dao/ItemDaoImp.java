@@ -1,9 +1,14 @@
 package om.dao;
 
 import java.util.List;
+
 import javax.transaction.Transactional;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,6 +48,17 @@ public class ItemDaoImp implements ItemDao {
 	@Override
 	public List<Item> getItems() throws JDBCConnectionException {
 		return getSession().createQuery("from Item").list();
+		
+	}
+	
+	@Override
+	public List<Item> getItemsByCategory(int categoryId)
+	{
+		DetachedCriteria criteria = DetachedCriteria.forClass(Item.class);
+		DetachedCriteria categoryCriteria = criteria.createCriteria("category").setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY); ; //Item class has category object
+		categoryCriteria.add(Restrictions.eq("id", categoryId)); //category entity has id field
+		Criteria executableCriteria = categoryCriteria.getExecutableCriteria(getSession());
+		return executableCriteria.list();
 	}
 
 	@Override
