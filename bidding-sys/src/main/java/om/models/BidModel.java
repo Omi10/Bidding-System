@@ -14,7 +14,16 @@ public class BidModel
 	private int bid_value;
 	private boolean isLatestBid;
 	private boolean isWon;
+	private String bidTime;
 	
+	
+	
+	public String getBidTime() {
+		return bidTime;
+	}
+	public void setBidTime(String bidTime) {
+		this.bidTime = bidTime;
+	}
 	public int getBidId() {
 		return bidId;
 	}

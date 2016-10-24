@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import om.entities.User;
 import om.entities.Bid;
 import om.entities.Item;
@@ -20,7 +21,6 @@ public class MappingUtility {
 		itemModel.setItemId(item.getId());
 		itemModel.setName(item.getItem());
 		
-
 		if (item.getBidType() != null && item.getBidType() == false)
 			itemModel.setBidType("Closed");
 		else if (item.getBidType() != null && item.getBidType() == true)
@@ -30,13 +30,11 @@ public class MappingUtility {
 
 		itemModel.setDescription(item.getDescription());
 		itemModel.setStartBidAmount(item.getInitialPrice());
-		java.util.Date dt = item.getEndTime();
-		System.out.println(dt);
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String currentTime = sdf.format(dt);
-		System.out.println(currentTime);
-		itemModel.setBidEndTime(currentTime);
-		//itemModel.setbidEndTime(item.getEndTime());
+		System.out.println(item.getEndTime());
+		Date bidTime = item.getEndTime();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println(sdf.format(bidTime));
+		itemModel.setBidEndTime(sdf.format(bidTime));
 		return itemModel;
 	}
 
@@ -71,6 +69,10 @@ public class MappingUtility {
 		bidModel.setWon(bid.isBidWon());
 		bidModel.setMadeBy(bid.getUser().getName());
 		bidModel.setBid_value(bid.getBidAmount());
+		Date dt = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentTime = sdf.format(dt);
+		bidModel.setBidTime(currentTime);
 		return bidModel;
 	}
 
@@ -91,6 +93,8 @@ public class MappingUtility {
 		bid.setUser(user);
 		bid.setItem(item);
 		bid.setBidAmount(makeBidModel.getBid_value());	
+		Date dt = new Date();
+		bid.setBidTime(dt);
 		return bid;
 		
 	}

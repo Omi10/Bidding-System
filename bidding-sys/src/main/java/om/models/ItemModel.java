@@ -9,7 +9,6 @@ import om.entities.User;
 
 public class ItemModel 
 {
-	
 	private String name;
 	private Category category;
 	private String owner;
